@@ -52,7 +52,7 @@ import { id } from '../utils/id';
     ])
   ]
 })
-export class BubbleSeriesComponent implements OnChanges {
+export class BubbleSeriesComponent {
 
   @Input() data;
   @Input() xScale;

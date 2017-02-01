@@ -120,8 +120,10 @@ export class BubbleChartComponent extends BaseChartComponent {
   activeEntries: any[] = [];
   
   update(): void {
+    console.log('super.update:');
     super.update();
 
+    console.log('this.zone.run:');
     this.zone.run(() => {
       this.dims = calculateViewDimensions({
         width: this.width,
