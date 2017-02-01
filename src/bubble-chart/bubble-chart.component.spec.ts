@@ -44,20 +44,18 @@ describe('<ngx-charts-bubble-chart>', () => {
     fixture.detectChanges();
   });
 
-  it('should set the svg width and height', (done) => {
+  it('should set the svg width and height', () => {
     const compiled = fixture.debugElement.nativeElement;
     const svg = d3.select(compiled.querySelectorAll('svg')[0]);
 
     expect(svg.attr('width')).toEqual('400');
     expect(svg.attr('height')).toEqual('800');
-    done();
   });
 
-  it('should render 12 circle elements', (done) => {
+  it('should render 12 circle elements', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
-    done();
   });
 
 });
