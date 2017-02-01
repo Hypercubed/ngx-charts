@@ -27,7 +27,7 @@ class TestHostComponent {
   };
 }
 
-xdescribe('<ngx-charts-bubble-chart>', () => {
+describe('<ngx-charts-bubble-chart>', () => {
 
   let fixture: ComponentFixture<TestHostComponent>;
   let comp: TestHostComponent;
