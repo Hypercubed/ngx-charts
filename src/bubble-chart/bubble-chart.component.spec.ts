@@ -54,18 +54,28 @@ describe('<ngx-charts-bubble-chart>', () => {
 
   it('should set the svg width and height', async(() => {
     fixture.detectChanges();
-    const svg = el.querySelectorAll('svg')[0];
-    console.log('should set the svg width and height:', svg);
 
-    expect(svg.getAttribute('width')).toEqual('400');
-    expect(svg.getAttribute('height')).toEqual('800');
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const svg = el.querySelectorAll('svg')[0];
+      console.log('should set the svg width and height:', svg);
+
+      expect(svg.getAttribute('width')).toEqual('400');
+      expect(svg.getAttribute('height')).toEqual('800');
+    });
+
   }));
 
   it('should render 12 circle elements', async(() => {
     fixture.detectChanges();
-    const svg = el.querySelectorAll('svg')[0];
-    console.log('should render 12 circle elements:', svg);
-    expect(svg.querySelectorAll('g.circle').length).toEqual(12);
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const svg = el.querySelectorAll('svg')[0];
+      console.log('should render 12 circle elements:', svg);
+      expect(svg.querySelectorAll('g.circle').length).toEqual(12);
+    });
+
   }));
 
 });
