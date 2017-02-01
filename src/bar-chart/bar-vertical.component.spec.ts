@@ -88,7 +88,7 @@ describe('<ngx-charts-bar-vertical>', () => {
     });
   });
 
-  xdescribe('padding', () => {
+  describe('padding', () => {
 
     it('should render correct cell size, with zero padding', (done) => {
       TestBed.overrideComponent(TestComponent, {
