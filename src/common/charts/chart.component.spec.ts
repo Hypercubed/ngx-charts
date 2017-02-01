@@ -16,7 +16,7 @@ class TestComponent {
   barData: any;
 }
 
-describe('<ngx-charts-chart>', () => {
+xdescribe('<ngx-charts-chart>', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({

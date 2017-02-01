@@ -28,7 +28,7 @@ class TestComponent {
   }
 }
 
-describe('<ngx-charts-legend>', () => {
+xdescribe('<ngx-charts-legend>', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
