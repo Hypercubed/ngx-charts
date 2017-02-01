@@ -4,9 +4,10 @@ import '../../config/testing-utils';
 import { bubble } from '../../demo/data';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { BubbleChartModule } from './bubble-chart.module';
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+// import { BubbleChartModule } from './bubble-chart.module';
+import { BubbleChartComponent } from './bubble-chart.component';
+import { BubbleSeriesComponent } from './bubble-series.component';
+import { ChartCommonModule } from '../common/chart-common.module';
 
 @Component({
   selector: 'test-component',
@@ -16,7 +17,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
               [results]="results">
             </ngx-charts-bubble-chart>`
 })
-class TestComponent {
+class TestHostComponent {
   results: any[] = bubble;
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -25,12 +26,13 @@ class TestComponent {
 
 describe('<ngx-charts-bubble-chart>', () => {
 
-  let fixture: ComponentFixture<TestComponent>;
+  let fixture: ComponentFixture<TestHostComponent>;
+  let compiled: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [BubbleChartModule],
+      declarations: [TestHostComponent, BubbleChartComponent, BubbleSeriesComponent],
+      imports: [ChartCommonModule/* , BubbleChartModule */],
       providers: [
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
@@ -39,12 +41,12 @@ describe('<ngx-charts-bubble-chart>', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(TestHostComponent);
     fixture.detectChanges();
+    compiled = fixture.debugElement.nativeElement;
   });
 
   it('should set the svg width and height', () => {
-    const compiled = fixture.debugElement.nativeElement;
     const svg = compiled.querySelectorAll('svg')[0];
 
     expect(svg.getAttribute('width')).toEqual('400');
@@ -52,8 +54,6 @@ describe('<ngx-charts-bubble-chart>', () => {
   });
 
   it('should render 12 circle elements', () => {
-    const compiled = fixture.debugElement.nativeElement;
-
     expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
   });
 
