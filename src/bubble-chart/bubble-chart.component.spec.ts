@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import d3 from '../d3';
 import '../../config/testing-utils';
@@ -30,47 +30,43 @@ describe('<ngx-charts-bubble-chart>', () => {
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
     });
-  });
 
-  describe('basic setup', () => {
-
-    beforeEach(() => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `
-               <ngx-charts-bubble-chart
-                [view]="[400,800]"
-                [scheme]="colorScheme"
-                [results]="results">
-              </ngx-charts-bubble-chart>`
-        }
-      });
-    });
-
-    it('should set the svg width and height', (done) => {
-      TestBed.compileComponents().then(() => {
-        const fixture = TestBed.createComponent(TestComponent);
-        fixture.detectChanges();
-
-        const compiled = fixture.debugElement.nativeElement;
-        const svg = d3.select(compiled.querySelectorAll('svg')[0]);
-
-        expect(svg.attr('width')).toEqual('400');
-        expect(svg.attr('height')).toEqual('800');
-        done();
-      });
-    });
-
-    xit('should render 12 circle elements', (done) => {
-      TestBed.compileComponents().then(() => {
-        const fixture = TestBed.createComponent(TestComponent);
-        fixture.detectChanges();
-
-        const compiled = fixture.debugElement.nativeElement;
-
-        expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
-        done();
-      });
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `
+              <ngx-charts-bubble-chart
+              [view]="[400,800]"
+              [scheme]="colorScheme"
+              [results]="results">
+            </ngx-charts-bubble-chart>`
+      }
     });
   });
+
+  it('should set the svg width and height', (done) => {
+    TestBed.compileComponents().then(() => {
+      const fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+
+      const compiled = fixture.debugElement.nativeElement;
+      const svg = d3.select(compiled.querySelectorAll('svg')[0]);
+
+      expect(svg.attr('width')).toEqual('400');
+      expect(svg.attr('height')).toEqual('800');
+      done();
+    });
+  });
+
+  it('should render 12 circle elements', (done) => {
+    TestBed.compileComponents().then(() => {
+      const fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+
+      const compiled = fixture.debugElement.nativeElement;
+
+      expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
+      done();
+    });
+  });
+
 });
