@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import d3 from '../d3';
 import '../../config/testing-utils';
 import { bubble } from '../../demo/data';
 import { APP_BASE_HREF } from '@angular/common';
@@ -46,10 +45,10 @@ describe('<ngx-charts-bubble-chart>', () => {
 
   it('should set the svg width and height', () => {
     const compiled = fixture.debugElement.nativeElement;
-    const svg = d3.select(compiled.querySelectorAll('svg')[0]);
+    const svg = compiled.querySelectorAll('svg')[0];
 
-    expect(svg.attr('width')).toEqual('400');
-    expect(svg.attr('height')).toEqual('800');
+    expect(svg.getAttribute('width')).toEqual('400');
+    expect(svg.getAttribute('height')).toEqual('800');
   });
 
   it('should render 12 circle elements', () => {
