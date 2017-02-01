@@ -72,7 +72,8 @@ export class BubbleSeriesComponent {
   circles: any[];
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.update();
+    console.log('ngOnChanges');
+    // this.update();
   }
 
   update(): void {

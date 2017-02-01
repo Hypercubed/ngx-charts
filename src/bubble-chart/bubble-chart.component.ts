@@ -124,51 +124,49 @@ export class BubbleChartComponent extends BaseChartComponent {
     super.update();
 
     console.log('before this.zone.run:');
-    // this.zone.run(() => {
-    console.log('start inside this.zone.run');
-    this.dims = calculateViewDimensions({
-      width: this.width,
-      height: this.height,
-      margins: this.margin,
-      showXAxis: this.xAxis,
-      showYAxis: this.yAxis,
-      xAxisHeight: this.xAxisHeight,
-      yAxisWidth: this.yAxisWidth,
-      showXLabel: this.showXAxisLabel,
-      showYLabel: this.showYAxisLabel,
-      showLegend: this.legend
+    this.zone.run(() => {
+      console.log('start inside this.zone.run');
+      this.dims = calculateViewDimensions({
+        width: this.width,
+        height: this.height,
+        margins: this.margin,
+        showXAxis: this.xAxis,
+        showYAxis: this.yAxis,
+        xAxisHeight: this.xAxisHeight,
+        yAxisWidth: this.yAxisWidth,
+        showXLabel: this.showXAxisLabel,
+        showYLabel: this.showYAxisLabel,
+        showLegend: this.legend
+      });
+
+      console.log('after dims');
+      if (!this.results) {
+        return;
+      }
+
+      console.log('domains');
+      this.seriesDomain = this.results.map(d => d.name);
+      this.rDomain = this.getRDomain();
+      this.xDomain = this.getXDomain();
+      this.yDomain = this.getYDomain();
+
+      this.transform = `translate(${ this.dims.xOffset },${ this.margin[0] })`;
+
+      console.log('color');
+      const colorDomain = this.schemeType === 'ordinal' ? this.seriesDomain : this.rDomain;
+      this.colors = new ColorHelper(this.scheme, this.schemeType, colorDomain, this.customColors);
+
+      this.data = this.results;
+
+      console.log('scales');
+      this.rScale = this.getRScale(this.rDomain, [this.minRadius, this.maxRadius]);
+      this.xScale = this.getXScale(this.xDomain, this.dims.width);
+      this.yScale = this.getYScale(this.yDomain, this.dims.height);
+      
+      console.log('legend');
+      this.legendOptions = this.getLegendOptions();
+      console.log('end inside this.zone.run');
     });
-
-    console.log('after dims');
-    if (!this.results) {
-      return;
-    }
-
-    console.log('results', this.results);
-
-    console.log('domains');
-    this.seriesDomain = this.results.map(d => d.name);
-    this.rDomain = this.getRDomain();
-    this.xDomain = this.getXDomain();
-    this.yDomain = this.getYDomain();
-
-    this.transform = `translate(${ this.dims.xOffset },${ this.margin[0] })`;
-
-    console.log('color');
-    const colorDomain = this.schemeType === 'ordinal' ? this.seriesDomain : this.rDomain;
-    this.colors = new ColorHelper(this.scheme, this.schemeType, colorDomain, this.customColors);
-
-    this.data = this.results;
-
-    console.log('scales');
-    this.rScale = this.getRScale(this.rDomain, [this.minRadius, this.maxRadius]);
-    this.xScale = this.getXScale(this.xDomain, this.dims.width);
-    this.yScale = this.getYScale(this.yDomain, this.dims.height);
-    
-    console.log('legend');
-    this.legendOptions = this.getLegendOptions();
-    console.log('end inside this.zone.run');
-    // });
     console.log('after this.zone.run');
   }
   
