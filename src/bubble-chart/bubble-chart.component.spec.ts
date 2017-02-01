@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import '../../config/testing-utils';
 import { bubble } from '../../demo/data';
@@ -50,21 +50,22 @@ describe('<ngx-charts-bubble-chart>', () => {
     comp = fixture.componentInstance;
     de = fixture.debugElement;
     el = de.nativeElement;
-    fixture.detectChanges();
   });
 
-  it('should set the svg width and height', () => {
+  it('should set the svg width and height', async(() => {
+    fixture.detectChanges();
     const svg = el.querySelectorAll('svg')[0];
     console.log('should set the svg width and height:', svg);
 
     expect(svg.getAttribute('width')).toEqual('400');
     expect(svg.getAttribute('height')).toEqual('800');
-  });
+  }));
 
-  it('should render 12 circle elements', () => {
+  it('should render 12 circle elements', async(() => {
+    fixture.detectChanges();
     const svg = el.querySelectorAll('svg')[0];
     console.log('should render 12 circle elements:', svg);
     expect(svg.querySelectorAll('g.circle').length).toEqual(12);
-  });
+  }));
 
 });
