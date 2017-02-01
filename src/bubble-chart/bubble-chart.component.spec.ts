@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import '../../config/testing-utils';
+// import '../../config/testing-utils';
 import { bubble } from '../../demo/data';
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -47,38 +47,23 @@ describe('<ngx-charts-bubble-chart>', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
+    fixture.detectChanges();
+
     comp = fixture.componentInstance;
     de = fixture.debugElement;
     el = de.nativeElement;
   });
 
-  it('should set the svg width and height', async(() => {
-    fixture.detectChanges();
+  it('should set the svg width and height', () => {
+    const svg = el.querySelectorAll('svg')[0];
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      
-      console.log('should set the svg width and height:', el);
-      const svg = el.querySelectorAll('svg')[0];
+    expect(svg.getAttribute('width')).toEqual('400');
+    expect(svg.getAttribute('height')).toEqual('800');
+  });
 
-      expect(svg.getAttribute('width')).toEqual('400');
-      expect(svg.getAttribute('height')).toEqual('800');
-    });
-
-  }));
-
-  it('should render 12 circle elements', async(() => {
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      
-      console.log('should render 12 circle elements:', el);
-      const svg = el.querySelectorAll('svg')[0];
-
-      expect(svg.querySelectorAll('g.circle').length).toEqual(12);
-    });
-
-  }));
+  it('should render 12 circle elements', () => {
+    const svg = el.querySelectorAll('svg')[0];
+    expect(svg.querySelectorAll('g.circle').length).toEqual(12);
+  });
 
 });
