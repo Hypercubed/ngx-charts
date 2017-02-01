@@ -7,7 +7,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { BarChartModule } from './bar-chart.module';
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 @Component({
   selector: 'test-component',
