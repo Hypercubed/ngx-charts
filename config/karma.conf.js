@@ -35,7 +35,7 @@ module.exports =  function(config) {
       html: './coverage/html',
       lcovonly: './coverage/lcov.info'
     },
-    browserNoActivityTimeout: 30000
+    browserNoActivityTimeout: 300000
   };
 
   if (process.env.TRAVIS){
