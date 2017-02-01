@@ -1,7 +1,7 @@
 import '../../config/testing-utils';
 import { trimLabel } from './trim-label.helper';
 
-xdescribe('trimLabel', () => {
+describe('trimLabel', () => {
 
   it('converts a number to a string when passed', () => {
     const num = 15;

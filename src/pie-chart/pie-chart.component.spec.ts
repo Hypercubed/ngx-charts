@@ -18,7 +18,7 @@ class TestComponent {
   };
 }
 
-xdescribe('<ngx-charts-pie>', () => {
+describe('<ngx-charts-pie>', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({

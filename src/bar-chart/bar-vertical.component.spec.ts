@@ -20,7 +20,7 @@ class TestComponent {
   };
 }
 
-xdescribe('<ngx-charts-bar-vertical>', () => {
+describe('<ngx-charts-bar-vertical>', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
