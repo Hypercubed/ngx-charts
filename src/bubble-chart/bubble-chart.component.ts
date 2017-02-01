@@ -122,38 +122,38 @@ export class BubbleChartComponent extends BaseChartComponent {
   update(): void {
     super.update();
 
-    this.zone.run(() => {
-      this.dims = calculateViewDimensions({
-        width: this.width,
-        height: this.height,
-        margins: this.margin,
-        showXAxis: this.xAxis,
-        showYAxis: this.yAxis,
-        xAxisHeight: this.xAxisHeight,
-        yAxisWidth: this.yAxisWidth,
-        showXLabel: this.showXAxisLabel,
-        showYLabel: this.showYAxisLabel,
-        showLegend: this.legend
-      });
-
-      this.seriesDomain = this.results.map(d => d.name);
-      this.rDomain = this.getRDomain();
-      this.xDomain = this.getXDomain();
-      this.yDomain = this.getYDomain();
-
-      this.transform = `translate(${ this.dims.xOffset },${ this.margin[0] })`;
-
-      const colorDomain = this.schemeType === 'ordinal' ? this.seriesDomain : this.rDomain;
-      this.colors = new ColorHelper(this.scheme, this.schemeType, colorDomain, this.customColors);
-
-      this.data = this.results;
-
-      this.rScale = this.getRScale(this.rDomain, [this.minRadius, this.maxRadius]);
-      this.xScale = this.getXScale(this.xDomain, this.dims.width);
-      this.yScale = this.getYScale(this.yDomain, this.dims.height);
-      
-      this.legendOptions = this.getLegendOptions();
+    // this.zone.run(() => {
+    this.dims = calculateViewDimensions({
+      width: this.width,
+      height: this.height,
+      margins: this.margin,
+      showXAxis: this.xAxis,
+      showYAxis: this.yAxis,
+      xAxisHeight: this.xAxisHeight,
+      yAxisWidth: this.yAxisWidth,
+      showXLabel: this.showXAxisLabel,
+      showYLabel: this.showYAxisLabel,
+      showLegend: this.legend
     });
+
+    this.seriesDomain = this.results.map(d => d.name);
+    this.rDomain = this.getRDomain();
+    this.xDomain = this.getXDomain();
+    this.yDomain = this.getYDomain();
+
+    this.transform = `translate(${ this.dims.xOffset },${ this.margin[0] })`;
+
+    const colorDomain = this.schemeType === 'ordinal' ? this.seriesDomain : this.rDomain;
+    this.colors = new ColorHelper(this.scheme, this.schemeType, colorDomain, this.customColors);
+
+    this.data = this.results;
+
+    this.rScale = this.getRScale(this.rDomain, [this.minRadius, this.maxRadius]);
+    this.xScale = this.getXScale(this.xDomain, this.dims.width);
+    this.yScale = this.getYScale(this.yDomain, this.dims.height);
+    
+    this.legendOptions = this.getLegendOptions();
+    // });
   }
   
   onClick(data, series): void {

@@ -20,7 +20,7 @@ class TestComponent {
   };
 }
 
-xdescribe('<ngx-charts-bubble-chart>', () => {
+describe('<ngx-charts-bubble-chart>', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
