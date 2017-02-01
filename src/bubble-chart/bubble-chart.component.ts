@@ -123,8 +123,9 @@ export class BubbleChartComponent extends BaseChartComponent {
     console.log('super.update:');
     super.update();
 
-    console.log('this.zone.run:');
+    console.log('before this.zone.run:');
     this.zone.run(() => {
+      console.log('start inside this.zone.run');
       this.dims = calculateViewDimensions({
         width: this.width,
         height: this.height,
@@ -155,7 +156,9 @@ export class BubbleChartComponent extends BaseChartComponent {
       this.yScale = this.getYScale(this.yDomain, this.dims.height);
       
       this.legendOptions = this.getLegendOptions();
+      console.log('end inside this.zone.run');
     });
+    console.log('after this.zone.run');
   }
   
   onClick(data, series): void {
