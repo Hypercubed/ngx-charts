@@ -8,7 +8,7 @@ import { NgxChartsModule } from '.';
   in the code coverage stats.
 */
 
-describe('ngx-charts Module', () => {
+xdescribe('ngx-charts Module', () => {
 
   it('should load', () => {
     expect(NgxChartsModule).toBeDefined();
