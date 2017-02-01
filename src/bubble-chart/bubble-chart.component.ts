@@ -144,6 +144,8 @@ export class BubbleChartComponent extends BaseChartComponent {
       return;
     }
 
+    console.log('results', this.results);
+
     console.log('domains');
     this.seriesDomain = this.results.map(d => d.name);
     this.rDomain = this.getRDomain();
