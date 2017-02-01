@@ -4,6 +4,9 @@ import '../../config/testing-utils';
 import { bubble } from '../../demo/data';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
 // import { BubbleChartModule } from './bubble-chart.module';
 import { BubbleChartComponent } from './bubble-chart.component';
 import { BubbleSeriesComponent } from './bubble-series.component';
@@ -27,7 +30,9 @@ class TestHostComponent {
 describe('<ngx-charts-bubble-chart>', () => {
 
   let fixture: ComponentFixture<TestHostComponent>;
-  let compiled: any;
+  let comp: TestHostComponent;
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,21 +47,24 @@ describe('<ngx-charts-bubble-chart>', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
+    comp = fixture.componentInstance;
+    de = fixture.debugElement;
+    el = de.nativeElement;
     fixture.detectChanges();
-    compiled = fixture.debugElement.nativeElement;
   });
 
   it('should set the svg width and height', () => {
-    console.log('should set the svg width and height:', compiled);
-    const svg = compiled.querySelectorAll('svg')[0];
+    const svg = el.querySelectorAll('svg')[0];
+    console.log('should set the svg width and height:', svg);
 
     expect(svg.getAttribute('width')).toEqual('400');
     expect(svg.getAttribute('height')).toEqual('800');
   });
 
   it('should render 12 circle elements', () => {
-    console.log('should render 12 circle elements:', compiled);
-    expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
+    const svg = el.querySelectorAll('svg')[0];
+    console.log('should render 12 circle elements:', svg);
+    expect(svg.querySelectorAll('g.circle').length).toEqual(12);
   });
 
 });
