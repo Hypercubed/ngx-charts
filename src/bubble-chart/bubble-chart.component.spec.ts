@@ -57,8 +57,9 @@ describe('<ngx-charts-bubble-chart>', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
+      
+      console.log('should set the svg width and height:', el);
       const svg = el.querySelectorAll('svg')[0];
-      console.log('should set the svg width and height:', svg);
 
       expect(svg.getAttribute('width')).toEqual('400');
       expect(svg.getAttribute('height')).toEqual('800');
@@ -71,8 +72,10 @@ describe('<ngx-charts-bubble-chart>', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
+      
+      console.log('should render 12 circle elements:', el);
       const svg = el.querySelectorAll('svg')[0];
-      console.log('should render 12 circle elements:', svg);
+
       expect(svg.querySelectorAll('g.circle').length).toEqual(12);
     });
 
