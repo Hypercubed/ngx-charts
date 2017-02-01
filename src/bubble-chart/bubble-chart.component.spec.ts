@@ -47,6 +47,7 @@ describe('<ngx-charts-bubble-chart>', () => {
   });
 
   it('should set the svg width and height', () => {
+    console.log('should set the svg width and height:', compiled);
     const svg = compiled.querySelectorAll('svg')[0];
 
     expect(svg.getAttribute('width')).toEqual('400');
@@ -54,6 +55,7 @@ describe('<ngx-charts-bubble-chart>', () => {
   });
 
   it('should render 12 circle elements', () => {
+    console.log('should render 12 circle elements:', compiled);
     expect(compiled.querySelectorAll('g.circle').length).toEqual(12);
   });
 
